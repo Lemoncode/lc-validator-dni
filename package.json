@@ -1,6 +1,6 @@
 {
   "name": "lc-validator-dni",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "lc-form-validation validator for dni fields",
   "keywords": [
     "lc-form-validation",
@@ -53,7 +53,7 @@
     "lint": "tslint --project . --format stylish",
     "lint:fix": "prettier --write src/**/*.{ts,tsx,js,jsx} && tslint --project . --fix",
     "prerelease": "npm run lint:fix && npm run test && npm run build",
-    "release": "npm run publish build",
+    "release": "npm publish ./build",
     "release:local": "npm install ./build -g"
   },
   "dependencies": {},
