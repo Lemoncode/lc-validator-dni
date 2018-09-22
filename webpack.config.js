@@ -27,6 +27,7 @@ module.exports = env => {
       },
       libraryTarget: 'umd',
     },
+    externals: 'lc-form-validation',
     module: {
       rules: [
         {

@@ -1,6 +1,6 @@
 {
   "name": "lc-validator-dni",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "lc-form-validation validator for dni fields",
   "keywords": [
     "lc-form-validation",
