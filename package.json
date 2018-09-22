@@ -54,8 +54,7 @@
     "prerelease": "npm run lint:fix && npm run test && npm run build",
     "release": "npm run prerelease && npm run publish"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "peerDependencies": {
     "lc-form-validation": "^2.0.0"
   },
