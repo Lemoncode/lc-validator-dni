@@ -1,0 +1,1 @@
+export { validateDNI } from './dni';
