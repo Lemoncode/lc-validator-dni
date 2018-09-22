@@ -1,22 +1,27 @@
 import { FieldValidationFunction, FieldValidationResult } from 'lc-form-validation';
 
-const letterMap = 'TRWAGMYFPDXBNJZSQVHLCKET';
+const controlMap = 'TRWAGMYFPDXBNJZSQVHLCKET';
 const defaultInvalidMessage = 'Invalid DNI';
 
 const isString = (input: any) => typeof input === 'string' || input instanceof String;
 const extractNumber = (dni: string): number => parseInt(dni.slice(0, dni.length - 1));
-const extractLetter = (dni: string): string => dni.slice(dni.length - 1).toUpperCase();
-const mapNumberToLetter = (dniNumber: number): string => {
-  const mod = dniNumber % 23;
-  return letterMap.slice(mod, mod + 1);
-};
+const extractControlLetter = (dni: string): string => dni.slice(dni.length - 1).toUpperCase();
+const isValidNumber = (num: number): boolean => (num >= 1) && (num <= 99999999);
+const isValidControlLetter = (letter: string, num: number): boolean =>
+  controlMap.includes(letter) && (controlMap[num % 23] === letter);
 
-export const validateDNI: FieldValidationFunction = (input: any) => {
+
+export const validateDNI: FieldValidationFunction = (value: any, vm: any, customParams: any) => {
   const result = new FieldValidationResult();
-  result.succeeded = isString(input)
-    ? Boolean(mapNumberToLetter(extractNumber(input)) === extractLetter(input))
-    : false;
-  result.errorMessage = result.succeeded ? '' : defaultInvalidMessage;
+  let valid = false;
+
+  if (isString(value)) {
+    const num = extractNumber(value);
+    const letter = extractControlLetter(value);
+    valid = (isValidNumber(num) && isValidControlLetter(letter, num));
+  }
+  result.succeeded = valid;
+  result.errorMessage = valid ? '' : defaultInvalidMessage;
 
   return result;
 };
