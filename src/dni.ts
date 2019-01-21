@@ -10,6 +10,8 @@ const isValidNumber = (num: number): boolean => num >= 1 && num <= 99999999;
 const isValidControlLetter = (letter: string, num: number): boolean =>
   controlMap.includes(letter) && controlMap[num % 23] === letter;
 
+export const VALIDATION_TYPE = 'DNI';
+
 export const validateDNI: FieldValidationFunction = (value: any) => {
   const result = new FieldValidationResult();
   let valid = false;
@@ -19,7 +21,7 @@ export const validateDNI: FieldValidationFunction = (value: any) => {
     const letter = extractControlLetter(value);
     valid = isValidNumber(num) && isValidControlLetter(letter, num);
   }
-  result.type = 'DNI';
+  result.type = VALIDATION_TYPE;
   result.succeeded = valid;
   result.errorMessage = valid ? '' : defaultInvalidMessage;
 
