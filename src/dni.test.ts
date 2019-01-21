@@ -13,6 +13,19 @@ describe('validateDNI', () => {
     expect(result.succeeded).toBeFalsy();
   });
 
+  it('should return result type DNI', () => {
+    // Arrage
+    const testDNI = undefined;
+
+    // Act
+    const result = validateDNI(testDNI, null, null) as FieldValidationResult;
+
+    // Assert
+    expect(result.type).toEqual('DNI');
+    expect(result.succeeded).toBeFalsy();
+  });
+
+
   it('should invalidate null input', () => {
     // Arrage
     const testDNI = null;

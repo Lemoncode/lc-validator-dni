@@ -19,6 +19,7 @@ export const validateDNI: FieldValidationFunction = (value: any) => {
     const letter = extractControlLetter(value);
     valid = isValidNumber(num) && isValidControlLetter(letter, num);
   }
+  result.type = 'DNI';
   result.succeeded = valid;
   result.errorMessage = valid ? '' : defaultInvalidMessage;
 
