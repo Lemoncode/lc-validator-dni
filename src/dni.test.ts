@@ -1,4 +1,4 @@
-import { validateDNI } from './dni';
+import { validateDNI, VALIDATION_TYPE } from './dni';
 import { FieldValidationResult } from 'lc-form-validation';
 
 describe('validateDNI', () => {
@@ -12,6 +12,19 @@ describe('validateDNI', () => {
     // Assert
     expect(result.succeeded).toBeFalsy();
   });
+
+  it('should return result type DNI', () => {
+    // Arrage
+    const testDNI = undefined;
+
+    // Act
+    const result = validateDNI(testDNI, null, null) as FieldValidationResult;
+
+    // Assert
+    expect(result.type).toEqual(VALIDATION_TYPE);
+    expect(result.succeeded).toBeFalsy();
+  });
+
 
   it('should invalidate null input', () => {
     // Arrage
